@@ -37,8 +37,7 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
   });
 }
 
-export default {
-  async fetch(request: Request, env: unknown, ctx: unknown) {
+export default async function (request: Request, env: unknown, ctx: unknown) {
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
@@ -50,5 +49,4 @@ export default {
         headers: { "content-type": "text/html; charset=utf-8" },
       });
     }
-  },
-};
+}
